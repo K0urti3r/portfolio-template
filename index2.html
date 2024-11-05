@@ -35,7 +35,7 @@
                 <a href="#gallery" class="text-gray-600 hover:text-gray-800">Gallery</a>
                 <a href="#sketch" class="text-gray-600 hover:text-gray-800">Sketch</a>
                 <a href="#video" class="text-gray-600 hover:text-gray-800">Video</a>
-                <a href="example@email.com" class="text-gray-600 hover:text-gray-800">Email</a>
+                <a href="mailto:example@email.com" class="text-gray-600 hover:text-gray-800">Email</a>
                 <a href="https://openprocessing.org/" class="text-gray-600 hover:text-gray-800">Open Processing</a>
                 <a href="https://instagram.com/" class="text-gray-600 hover:text-gray-800">Instagram</a>
             </div>
@@ -78,16 +78,49 @@
                 <h2 class="text-3xl font-bold mb-6">Sketch</h2>
                 <div id="p5-canvas" class="rounded-lg"></div>
                 <script>
+                 let n = 1; // Change this line
+                    let d = 1;
+                    let start = 0;
                     function setup() {
                         let canvas = createCanvas(950, 400);
                         canvas.parent('p5-canvas');
                     }
 
-                    function draw() {
-                        background(220);
-                        fill(51);
-                        ellipse(mouseX, mouseY, 50, 50);
-                    }
+function draw() {
+  background(0);
+  translate(width / 2, height / 2);
+  stroke(255, 0, 255);
+  noFill();
+  beginShape();
+  strokeWeight(1);
+  for (let a = 0; a < TWO_PI * reduceDenominator(n, d); a += 0.02) {
+    let r = 200 * cos(n / d * a);
+    let x = r * cos(a);
+    let y = r * sin(a);
+    vertex(x, y);
+  }
+  endShape(CLOSE);
+
+  n = (n >= 12) ? 1 : n + 0.02; // This line should work now
+}
+
+// function to reduce the fraction n/d
+function reduceDenominator(n, d) {
+  let gcdVal = gcd(Math.round(n), Math.round(d)); // round float to int before passing to gcd
+  return n / gcdVal;
+}
+
+// function to calculate the Greatest Common Divisor (GCD)
+function gcd(n, d) {
+  let remainder;
+  while (d != 0) {
+    remainder = n % d;
+    n = d;
+    d = remainder;
+  }
+  return Math.abs(n);
+}
+                    
                 </script>
             </section>
 
