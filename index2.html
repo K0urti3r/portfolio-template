@@ -9,8 +9,6 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            margin: 0;
-            overflow: hidden; /* Prevent scrolling */
         }
         .video-container {
             position: relative;
@@ -23,14 +21,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-        }
-        #p5-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Ensure the canvas is behind other content */
         }
     </style>
 </head>
@@ -66,8 +56,10 @@
                 <h1 class="text-4xl font-bold mb-4">K0RTI3R</h1>
                 <p class="text-lg mb-6">
                     As I sit under trees and listen to the wind rustle through the leaves, making the flowers dance, I draw inspiration from nature and how it makes me feel. The shadows cast by the angles of the sun and the negative space they create allow me to see different dimensions and the depth of knowledge the universe offers us. I am fascinated by sacred geometry and how it influences the chaos and balance prevalent in all of life.
-                    After painting, I believe digital art is a way to create a living, breathing piece that not only speaks for itself but also uses interaction from the audience to affect what we see. These interactions translate the intimate relationship one has with art for their own sake. I also believe it is important to use data and statistics of prevalent information and world events that affect us all. This data is transformed into an art piece that makes us step back and realize how simple numbers and bar graphs can alter the organic way we connect with each other—like trees communicating through mushrooms, sending electrical signals through their roots, or pollen transfusion with bees.
-                    I believe digital art using data can help bridge the deforestation and disconnection that has resulted from our separation from source and Mother Gaia. Color therapy, time, symbols, and sound will be the alphabet of the universal language my art will create, allowing all to communicate and understand one another, even those who do not share the same senses. We are all connected.
+After painting, I believe digital art is a way to create a living, breathing piece that not only speaks for itself but also uses interaction from the audience to affect what we see. These interactions translate the intimate relationship one has with art for their own sake. I also believe it is important to use data and statistics of prevalent information and world events that affect us all. This data is transformed into an art piece that makes us step back and realize how simple numbers and bar graphs can alter the organic way we connect with each other—like trees communicating through mushrooms, sending electrical signals through their roots, or pollen transfusion with bees.
+I believe digital art using data can help bridge the deforestation and disconnection that has resulted from our separation from source and Mother Gaia. Color therapy, time, symbols, and sound will be the alphabet of the universal language my art will create, allowing all to communicate and understand one another, even those who do not share the same senses. We are all connected.
+
+
                 </p>
                 <a href="your-cv.pdf" download class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600">
                     Download CV
@@ -90,7 +82,7 @@
                 <h2 class="text-3xl font-bold mb-6">Sketch</h2>
                 <div id="p5-canvas" class="rounded-lg"></div>
                 <script>
-                    let n = 1; // Change this line
+                 let n = 1; // Change this line
                     let d = 1;
                     let start = 0;
                     function setup() {
@@ -98,42 +90,44 @@
                         canvas.parent('p5-canvas');
                     }
 
-                    function draw() {
-                        background(0);
-                        translate(width / 2, height / 2);
-                        stroke(255, 0, 255);
-                        noFill();
-                        beginShape();
-                        strokeWeight(1);
-                        for (let a = 0; a < TWO_PI * reduceDenominator(n, d); a += 0.02) {
-                            let r = 200 * cos(n / d * a);
-                            let x = r * cos(a);
-                            let y = r * sin(a);
-                            vertex(x, y);
-                        }
-                        endShape(CLOSE);
+function draw() {
+  background(0);
+  translate(width / 2, height / 2);
+  stroke(255, 0, 255);
+  noFill();
+  beginShape();
+  strokeWeight(1);
+  for (let a = 0; a < TWO_PI * reduceDenominator(n, d); a += 0.02) {
+    let r = 200 * cos(n / d * a);
+    let x = r * cos(a);
+    let y = r * sin(a);
+    vertex(x, y);
+  }
+  endShape(CLOSE);
 
-                        n = (n >= 12) ? 1 : n + 0.02; // This line should work now
-                    }
+  n = (n >= 12) ? 1 : n + 0.02; // This line should work now
+}
 
-                    // function to reduce the fraction n/d
-                    function reduceDenominator(n, d) {
-                        let gcdVal = gcd(Math.round(n), Math.round(d)); // round float to int before passing to gcd
-                        return n / gcdVal;
-                    }
+// function to reduce the fraction n/d
+function reduceDenominator(n, d) {
+  let gcdVal = gcd(Math.round(n), Math.round(d)); // round float to int before passing to gcd
+  return n / gcdVal;
+}
 
-                    // function to calculate the Greatest Common Divisor (GCD)
-                    function gcd(n, d) {
-                        let remainder;
-                        while (d != 0) {
-                            remainder = n % d;
-                            n = d;
-                            d = remainder;
-                        }
-                        return Math.abs(n);
-                    }
+// function to calculate the Greatest Common Divisor (GCD)
+function gcd(n, d) {
+  let remainder;
+  while (d != 0) {
+    remainder = n % d;
+    n = d;
+    d = remainder;
+  }
+  return Math.abs(n);
+}
+                    
                 </script>
             </section>
+
 
             <!-- Video Section -->
             <section id="video">
@@ -147,11 +141,8 @@
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white text-center py-4">
-        <p>© 2023 Your Name. All rights reserved.</p>
+        <p>&copy; 2023 Your Name. All rights reserved.</p>
     </footer>
 
-    <!-- p5.js Background Canvas -->
-    <div id="p5-background"></div>
-    <script src="sketch.js"></script>
 </body>
 </html>
